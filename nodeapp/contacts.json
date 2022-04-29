@@ -1,0 +1,23 @@
+{
+    "contact":{
+        "firstName": "Meghan",
+        "lastName": "Jones",
+        "email": "megjones99@email.com",
+        "favoriteColor": "Red",
+        "birthday": "4/19/99"
+    },
+    "contact":{
+        "firstName": "Jacob",
+        "lastName": "Porter",
+        "email": "porterj14@email.com",
+        "favoriteColor": "Blue",
+        "birthday": "6/24/91"
+    },
+    "contact":{
+        "firstName": "Emma",
+        "lastName": "Charles",
+        "email": "emmychar@email.com",
+        "favoriteColor": "Pink",
+        "birthday": "10/2/89"
+    }
+}
