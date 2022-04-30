@@ -32,4 +32,4 @@ module.exports = {
   getDb,
 };
 
-//mongodb+srv://SierraP:zecc4YKwbelRUwEr@cse341.19dk1.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+
