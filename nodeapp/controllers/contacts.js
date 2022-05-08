@@ -1,6 +1,6 @@
 const mongodb = require('../db/connect');
 const ObjectId = require('mongodb').ObjectId;
-
+//body parser?
 
 //get one contact
 const oneContact = async (req, res) => {
@@ -23,7 +23,7 @@ const allContacts = async (req, res) => {
 
 // insert contact
 const insertContact = async (req, res) => {
-  const contact = {
+  const contactInfo = {
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     email: req.body.email,
@@ -35,8 +35,7 @@ const insertContact = async (req, res) => {
 //update contact
 const updateContact = async (req, res) => {
   const contactID = new ObjectId(req.params.id);
-  // be aware of updateOne if you only want to update specific fields
-  const contact = {
+  const contactInfo = {
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     email: req.body.email,
@@ -47,16 +46,10 @@ const updateContact = async (req, res) => {
     .getDb()
     .db()
     .collection('contacts')
-    .replaceOne({ _id: contactID }, contact);
+    .replaceOne({ _id: contactID }, contactInfo);
   console.log(reply);
 
 };
 
-//delete contact
-const deleteContact = async (req, res) => {
-  const contactID = new ObjectId(req.params.id);
-  const reply = await mongodb.getDb().db().collection('contacts').remove({ _id: contactID }, true);
-  console.log(reply);
-};
 
-module.exports = {oneContact, allContacts, insertContact, updateContact, deleteContact};
+module.exports = {oneContact, allContacts, insertContact, updateContact};
