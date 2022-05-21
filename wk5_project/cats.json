@@ -1,0 +1,12 @@
+{
+    "cat":{
+        "breed": "Calico",
+        "color": "multi",
+        "weight": "10-12 lbs"
+    },
+    "cat":{
+        "breed": "Persian",
+        "color": "white",
+        "weight": "10-16 lbs"
+    }
+}
