@@ -2,6 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser');
 const mongodb = require('./db/connect');
 const cors = require('cors');
+const { signupValidation, loginValidation } = require('./validation.js');
 
  
 const port = process.env.PORT || 3000;
@@ -14,6 +15,28 @@ const app = express();
     next();
   })
   app.use('/', require('./routes'));
+  app.use(bodyParser.urlencoded({
+    extended: true
+}));
+
+app.post('/register', signupValidation, (req, res, next) => {
+  // your registration code
+});
+
+
+app.post('/login', loginValidation, (req, res, next) => {
+  // your login code
+});
+
+// Handling Errors
+app.use((err, req, res, next) => {
+   // console.log(err);
+   err.statusCode = err.statusCode || 500;
+   err.message = err.message || "Internal Server Error";
+   res.status(err.statusCode).json({
+     message: err.message,
+   });
+});
  
 mongodb.initDb((err, mongodb) => {
   if (err) {
@@ -36,7 +59,7 @@ const doc = {
 };
 
 const outputFile = './swagger.json';
-const endpointsFiles = ['/routes/index.js'];
+const endpointsFiles = ['routes/index.js'];
 
 
 swaggerAutogen(outputFile, endpointsFiles, doc);
