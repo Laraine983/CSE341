@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const mongodb = require('./db/connect');
 const cors = require('cors');
 const { signupValidation, loginValidation } = require('./validation.js');
+const { auth } = require('express-openid-connect');
 
  
 const port = process.env.PORT || 3000;
@@ -18,6 +19,15 @@ const app = express();
   app.use(bodyParser.urlencoded({
     extended: true
 }));
+app.use(
+  auth({
+    issuerBaseURL: 'https://YOUR_DOMAIN',
+    baseURL: 'https://YOUR_APPLICATION_ROOT_URL',
+    clientID: 'YOUR_CLIENT_ID',
+    secret: 'LONG_RANDOM_STRING',
+    idpLogout: true,
+  })
+);
 
 app.post('/register', signupValidation, (req, res, next) => {
   // your registration code
