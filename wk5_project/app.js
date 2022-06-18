@@ -6,7 +6,6 @@ const cors = require('cors');
 const { signupValidation, loginValidation } = require('./validation.js');
 
 
- 
 const port = process.env.PORT || 3000;
 const app = express();
  
@@ -21,12 +20,8 @@ const app = express();
     extended: true
 }));
 
-
-
-
-// Handling Errors
 app.use((err, req, res, next) => {
-   // console.log(err);
+  
    err.statusCode = err.statusCode || 500;
    err.message = err.message || "Internal Server Error";
    res.status(err.statusCode).json({
@@ -70,11 +65,6 @@ app.get('/', function(req, res) {
   res.render('pages/auth');
 });
 
-// const port = process.env.PORT || 3000;
-// app.listen(port , () => console.log('App listening on port ' + port));
-
-/*  PASSPORT SETUP  */
-
 const passport = require('passport');
 var userProfile;
 
@@ -116,6 +106,5 @@ app.get('/auth/google',
 app.get('/auth/google/callback', 
   passport.authenticate('google', { failureRedirect: '/error' }),
   function(req, res) {
-    // Successful authentication, redirect success.
     res.redirect('/success');
   });
